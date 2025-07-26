@@ -11,7 +11,7 @@ export const Footer = () => {
   const theme = useCurrentTheme();
   const currentColor = theme === "dark" ? defaultColor : lightThemeIconColor;
   return (
-    <div className="flex justify-between max-w-[64rem] w-full">
+    <div className="flex justify-between w-full">
       <Link
         href="https://www.linkedin.com/in/roman-pavlenko-664674242/"
         target="_blank"

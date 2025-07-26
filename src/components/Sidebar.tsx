@@ -1,39 +1,67 @@
 "use client";
 
+import { useCurrentTheme } from "@/hooks/useCurrentTheme";
 import { ItemBox } from "./itemBox";
+import { TDataItem } from "@/constants/data";
 
-interface SidebarProps {
-  activeItem: string | null;
-  setActiveItem: (arg: string | null) => void;
+interface DataItem {
+  label: string;
+  heading?: string;
+  period?: string;
+  description?: string;
+  nonInteractable?: boolean;
 }
 
-export const Sidebar = ({ activeItem, setActiveItem }: SidebarProps) => {
+interface DataStructure {
+  introduction: {
+    items: DataItem[];
+  };
+  experience: {
+    items: DataItem[];
+  };
+  skills: {
+    items: DataItem[];
+  };
+}
+
+interface SidebarProps {
+  activeItem: TDataItem | null;
+  setActiveItem: (arg: TDataItem | null) => void;
+  data: DataStructure | null;
+}
+
+export const Sidebar = ({ activeItem, setActiveItem, data }: SidebarProps) => {
+  const theme = useCurrentTheme();
+
+  if (!data) {
+    return (
+      <div className="max-w-80 max-h-screen hidden lg:flex lg:flex-col lg:gap-4">
+        <div className="text-white">Loading...</div>
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-80 max-h-screen overflow-scroll">
+    <div className="max-w-80 max-h-screen hidden lg:flex lg:flex-col lg:gap-4">
       <ItemBox
-        items={[
-          {
-            label:
-              "Hello! I'm Roman Pavlenko, a <green>passionate</green> software engineer from Ukraine",
-          },
-        ]}
+        theme={theme}
+        items={data.introduction.items}
+        setActiveItem={setActiveItem}
       />
       <ItemBox
+        theme={theme}
         label="Experience"
-        items={[
-          {
-            label: "Sinova.dev",
-            link: setActiveItem,
-          },
-          {
-            label: "NCDev agency",
-            link: setActiveItem,
-          },
-          {
-            label: "Freelance",
-            link: setActiveItem,
-          },
-        ]}
+        items={data.experience.items}
+        setActiveItem={setActiveItem}
+        activeItemLabel={activeItem?.label}
+      />
+      <ItemBox
+        theme={theme}
+        label="Skills"
+        isLastBox={true}
+        items={data.skills.items}
+        setActiveItem={setActiveItem}
+        activeItemLabel={activeItem?.label}
       />
     </div>
   );

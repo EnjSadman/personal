@@ -13,8 +13,30 @@ const TAG_COLOR_MAP: TagColorMap = {
   purple: "#7852A9",
 };
 
+function splitByNewlines(
+  text: string,
+  keyStart: number,
+  style?: React.CSSProperties
+) {
+  const lines = text.split("\n");
+  const result: React.ReactNode[] = [];
+
+  lines.forEach((line, index) => {
+    result.push(
+      <span key={keyStart++} style={style}>
+        {line}
+      </span>
+    );
+    if (index < lines.length - 1) {
+      result.push(<br key={keyStart++} />);
+    }
+  });
+
+  return { nodes: result, nextKey: keyStart };
+}
+
 export function transformMarkdown(input: string) {
-  const regex = /<(\w+)>(.*?)<\/\1>/g;
+  const regex = /<(\w+)>(.*?)<\/\1>/gs;
   const result: React.ReactNode[] = [];
   let lastIndex = 0;
   let match;
@@ -25,24 +47,27 @@ export function transformMarkdown(input: string) {
 
     if (match.index > lastIndex) {
       const plainText = input.slice(lastIndex, match.index);
-      result.push(<span key={key++}>{plainText}</span>);
+      const { nodes, nextKey } = splitByNewlines(plainText, key);
+      result.push(...nodes);
+      key = nextKey;
     }
 
-    if (tag in TAG_COLOR_MAP) {
-      result.push(
-        <span key={key++} style={{ color: TAG_COLOR_MAP[tag] }}>
-          {content}
-        </span>
-      );
-    } else {
-      result.push(<span key={key++}>{content}</span>);
-    }
+    const color = TAG_COLOR_MAP[tag];
+    const { nodes, nextKey } = splitByNewlines(
+      content,
+      key,
+      color ? { color } : undefined
+    );
+    result.push(...nodes);
+    key = nextKey;
 
     lastIndex = regex.lastIndex;
   }
 
   if (lastIndex < input.length) {
-    result.push(<span key={key++}>{input.slice(lastIndex)}</span>);
+    const remainingText = input.slice(lastIndex);
+    const { nodes } = splitByNewlines(remainingText, key);
+    result.push(...nodes);
   }
 
   return result;

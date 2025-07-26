@@ -23,7 +23,11 @@ export default async function RootLayout({
   const initialTheme = cookieStore.get("theme")?.value || "dark";
   return (
     <html lang="en" data-theme={initialTheme}>
-      <body className={`${firaMono.variable} antialiased`}>{children}</body>
+      <body
+        className={`${firaMono.variable} antialiased h-screen overflow-hidden`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

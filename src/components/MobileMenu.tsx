@@ -1,6 +1,5 @@
 import { Cross } from "@/icons/cross";
 import { HorizThreeLines } from "@/icons/horizThreeLines";
-import { useState } from "react";
 import { MobileSidebar } from "./MobileSidebar";
 import clsx from "clsx";
 
@@ -15,7 +14,9 @@ export const MobileMenu = ({
 }: MobileMenuProps) => {
   return (
     <header
-      className={clsx("sticky top-0 left-0", { "h-screen": isMenuOpened })}
+      className={clsx("sticky top-0 left-0 lg:hidden", {
+        "h-screen": isMenuOpened,
+      })}
     >
       <div className="flex justify-end">
         <button
