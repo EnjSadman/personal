@@ -8,7 +8,7 @@ interface ItemBoxProps {
   theme: string;
   isLastBox?: boolean;
   setActiveItem?: (arg: TDataItem | null) => void;
-  additionalOnClick?: (arg: unknown) => unknown;
+  additionalOnClick?: (arg?: unknown) => unknown;
   items: {
     label: string;
     heading?: string;
@@ -62,7 +62,7 @@ export const ItemBox = ({
                 key={el.label}
                 onClick={() => {
                   setActiveItem(el);
-                  additionalOnClick();
+                  additionalOnClick?.();
                 }}
                 className={clsx(
                   "p-1 ps-2 cursor-pointer hover:bg-[#FFFFFF20]",
