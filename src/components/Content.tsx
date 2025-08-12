@@ -8,7 +8,7 @@ type TContentProps = {
 export const Content = ({ activeItem }: TContentProps) => {
   const { heading, period, description } = activeItem;
   return (
-    <div className="w-full h-full border border-gray-400 p-4 space-y-4">
+    <div className="w-full h-full border border-gray-400 p-4 space-y-4 overflow-y-auto">
       {heading && <h1 className="text-2xl">{transformMarkdown(heading)}</h1>}
       {period && <h2 className="text-xl">{transformMarkdown(period)}</h2>}
       {description && (

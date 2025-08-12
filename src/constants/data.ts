@@ -1,3 +1,5 @@
+import { oldAgeCount } from "@/utils/functions/oldAgeCount";
+
 type TDataItem = {
   label: string;
   heading?: string;
@@ -25,6 +27,7 @@ export const DATA: TDataStructure = {
         label:
           "Hello! I'm Roman Pavlenko, a <green>passionate</green> software engineer from Ukraine",
         nonInteractable: true,
+        description: `Hello, my name is Roman. I'm ${oldAgeCount()} years old developer from Ukraine.\n I work as a frontend developer, and code stuff in my free time.\n Learning multiple things and feel this is not enough for me. Right now working on C and in parallel learning Gdscript, because I want to create hardware, and I have ideas and vision for my own video game\nLove to read books, movies and video games.\n `,
       },
     ],
   },
@@ -35,20 +38,24 @@ export const DATA: TDataStructure = {
         heading:
           "Front-end developer. <purple>Next.js</purple>, <yellow>Chrome Extensions</yellow>",
         period: "November 2024 - Now",
-        description: "",
+        description:
+          "I’m currently working at Sinova.dev, developing websites, web apps, and Chrome extensions.\n My main focus is on Chrome extensions — from simple internal tools that automate company processes to Chrome Web Store products that generate profits for clients.\n I’ve learned a great deal about extension development and software engineering in general, and I’m enjoying being part of the team.",
       },
       {
         label: "NCDev agency",
         heading:
           "Front-end developer. <green>React</green>, <purple>Next.js</purple>, <yellow>Chrome Extensions</yellow>, Bubble",
         period: "August 2023 - October 2024",
-        description: "",
+        description:
+          "I had a great time working with this company.\n It was my first job in a small business, and I gained experience across various fields, including healthcare, education, e-commerce, and finance.\n I worked on several memorable projects, such as developing a Chrome extension that allowed no-code developers to create and reuse their own library of components, and implementing a CRM system. For the CRM, the company needed accounting functionality, so I integrated it with an existing API and built a robust system capable of handling large volumes of data.",
       },
       {
         label: "Freelance",
-        heading: "Front-end developer. Wordpress, Elementor, HTML, CSS",
+        heading:
+          "Front-end developer. Wordpress, Elementor, <red>HTML</red>, <blue>CSS</blue>",
         period: "August 2020 - January 2022",
-        description: "",
+        description:
+          "As I was young and inexperienced, I met a friend in uni. I knew basic HTML and CSS, and he encouraged me to learn more.\n Together we were working on a freelance platform making all kinds of stuff: Landing pages, marketplaces, custom WordPress themes.\n Was fun, glad that i had that experience",
       },
     ],
   },
@@ -118,19 +125,19 @@ export const DATA: TDataStructure = {
         label: "Git",
         heading: "Version Control",
         description:
-          "The safety net of modern development. I can't imagine coding without it. Branching, merging, and collaboration made simple. Git is my time machine - I can travel back to any point in my code's history, experiment fearlessly, and collaborate with others without conflicts. The distributed nature means I can work offline and sync later.",
+          "The safety net of modern development. I can't imagine coding without it. Branching, merging, and collaboration made simple. Git is my time machine - I can travel back to any point in my code's history, experiment and collaborate with others without conflicts. The distributed nature means I can work offline and sync later.",
       },
       {
         label: "Ai assisted development",
         heading: "Development Tool",
         description:
-          "Leveraging AI to boost productivity and solve complex problems. I use AI tools for code generation, debugging, and learning new technologies faster. It's like having a brilliant coding partner who never sleeps and knows everything - from suggesting optimizations to explaining complex concepts. The key is knowing when to trust the AI and when to apply human judgment.",
+          "Leveraging AI to boost productivity and solve complex problems. I use AI tools for code generation, debugging, and learning new technologies faster. It's like having a brilliant coding partner who never sleeps and knows everything - from suggesting optimizations to explaining complex concepts. I'm familiar with ChatGPT, Copilot, Gemini, Claude and Cursor. The key is knowing when to trust the AI and when to apply human judgment.",
       },
       {
         label: "Automated testing",
         heading: "Quality Assurance",
         description:
-          "Writing tests that catch bugs before users do. I believe in comprehensive testing - unit tests, integration tests, and end-to-end tests. The confidence that comes from a solid test suite is invaluable. Quality is not an accident - it's the result of careful testing, continuous integration, and a commitment to writing maintainable code that works reliably.",
+          "Writing tests that catch bugs before users do. I believe in comprehensive testing - unit tests, integration tests, and end-to-end tests. Have grasp on Jest and Cypres. The confidence that comes from a solid test suite is invaluable. Quality is not an accident - it's the result of careful testing, continuous integration, and a commitment to writing maintainable code that works reliably.",
       },
     ],
   },

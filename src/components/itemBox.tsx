@@ -8,6 +8,7 @@ interface ItemBoxProps {
   theme: string;
   isLastBox?: boolean;
   setActiveItem?: (arg: TDataItem | null) => void;
+  additionalOnClick?: (arg: unknown) => unknown;
   items: {
     label: string;
     heading?: string;
@@ -24,6 +25,7 @@ export const ItemBox = ({
   theme,
   isLastBox = false,
   setActiveItem,
+  additionalOnClick,
 }: ItemBoxProps) => {
   const indexOfActiveItem = items.findIndex(
     (el) => el.label === activeItemLabel
@@ -58,7 +60,10 @@ export const ItemBox = ({
             return (
               <div
                 key={el.label}
-                onClick={() => setActiveItem(el)}
+                onClick={() => {
+                  setActiveItem(el);
+                  additionalOnClick();
+                }}
                 className={clsx(
                   "p-1 ps-2 cursor-pointer hover:bg-[#FFFFFF20]",
                   {

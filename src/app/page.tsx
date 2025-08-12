@@ -12,15 +12,20 @@ export default function Home() {
   const [activeItem, setActiveItem] = useState<TDataItem | null>(null);
 
   return (
-    <div className="relative lg:h-screen flex flex-col justify-between px-4 py-4">
-      <MobileMenu isMenuOpened={isMenuOpened} setMenuOpened={setMenuOpened} />
-      <main className="flex gap-[32px] row-start-2 items-center sm:items-start h-full mb-4">
+    <div className="relative h-screen flex flex-col justify-between px-4 py-4">
+      <MobileMenu
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
+        isMenuOpened={isMenuOpened}
+        setMenuOpened={setMenuOpened}
+      />
+      <main className="flex gap-[32px] row-start-2 items-center sm:items-start flex-1 min-h-0">
         <Sidebar
           setActiveItem={setActiveItem}
           activeItem={activeItem}
           data={DATA}
         />
-        <Content activeItem={activeItem || DATA.introduction.items[0]}/>
+        <Content activeItem={activeItem || DATA.introduction.items[0]} />
       </main>
       <Footer />
     </div>
