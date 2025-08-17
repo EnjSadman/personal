@@ -31,22 +31,25 @@ export const ItemBox = ({
     (el) => el.label === activeItemLabel
   );
   const isItemInBox = indexOfActiveItem !== -1;
+  const hasCounter = items.length > 1;
+
   return (
     <div
       className={clsx("flex flex-col relative py-4", {
-        "flex-grow": isLastBox,
+        "h-full min-h-0": isLastBox,
       })}
     >
       <div
         className={clsx(
-          "absolute inset-0 border  pointer-events-none",
+          "absolute inset-0 border pointer-events-none",
           isItemInBox ? "border-active" : "border-white"
         )}
-      ></div>
+      />
+
       {label && (
         <div
           className={clsx(
-            "absolute top-0 left-2 -translate-y-1/2 p-1",
+            "absolute top-0 left-2 -translate-y-1/2 p-1 z-10",
             { "bg-primary-bg-dark": theme === "dark" },
             { "bg-primary-bg-light": theme === "light" }
           )}
@@ -54,8 +57,8 @@ export const ItemBox = ({
           {label}
         </div>
       )}
-      <div className="flex flex-col overflow-scroll">
-        {items.map((el, index) => {
+      <div className={clsx("flex-1 relative overflow-auto min-h-0 pr-2")}>
+        {items.map((el) => {
           if (!el.nonInteractable && setActiveItem) {
             return (
               <div
@@ -65,7 +68,7 @@ export const ItemBox = ({
                   additionalOnClick?.();
                 }}
                 className={clsx(
-                  "p-1 ps-2 cursor-pointer hover:bg-[#FFFFFF20]",
+                  "p-1 ps-2 cursor-pointer hover:bg-[#FFFFFF20] break-words",
                   {
                     "bg-active hover:bg-active":
                       activeItemLabel && el.label === activeItemLabel,
@@ -79,7 +82,7 @@ export const ItemBox = ({
             return (
               <div
                 key={el.label}
-                className={clsx("p-2 select-none", {
+                className={clsx("p-2 select-none break-words", {
                   "bg-amber-800":
                     activeItemLabel && el.label === activeItemLabel,
                 })}
@@ -91,10 +94,10 @@ export const ItemBox = ({
         })}
       </div>
 
-      {items.length > 1 && (
+      {hasCounter && (
         <div
           className={clsx(
-            "absolute bottom-0 right-2 translate-y-1/2 p-1 font-bold",
+            "absolute bottom-0 right-2 translate-y-1/2 p-1 font-bold z-10 rounded",
             { "bg-primary-bg-dark": theme === "dark" },
             { "bg-primary-bg-light": theme === "light" },
             { "text-active": isItemInBox }

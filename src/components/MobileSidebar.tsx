@@ -20,35 +20,37 @@ export const MobileSidebar = ({
   return (
     <div
       className={clsx(
-        "transition-transform duration-300 ease-in-out h-full overflow-y-auto p-4",
+        "transition-transform duration-300 ease-in-out h-full p-4 max-h-[90vh]",
         {
           "-translate-x-full": !isMenuOpened,
           "translate-x-0": isMenuOpened,
         }
       )}
     >
-      <ItemBox
-        theme={theme}
-        items={DATA.introduction.items}
-        setActiveItem={setActiveItem}
-      />
-      <ItemBox
-        theme={theme}
-        label="Experience"
-        items={DATA.experience.items}
-        setActiveItem={setActiveItem}
-        activeItemLabel={activeItem?.label}
-        additionalOnClick={() => setMenuOpened(false)}
-      />
-      <ItemBox
-        theme={theme}
-        label="Skills"
-        isLastBox={true}
-        items={DATA.skills.items}
-        setActiveItem={setActiveItem}
-        activeItemLabel={activeItem?.label}
-        additionalOnClick={() => setMenuOpened(false)}
-      />
+      <div className="h-full grid grid-rows-[auto_auto_1fr] gap-4 overflow-hidden pb-2">
+        <ItemBox
+          theme={theme}
+          items={DATA.introduction.items}
+          setActiveItem={setActiveItem}
+        />
+        <ItemBox
+          theme={theme}
+          label="Experience"
+          items={DATA.experience.items}
+          setActiveItem={setActiveItem}
+          activeItemLabel={activeItem?.label}
+          additionalOnClick={() => setMenuOpened(false)}
+        />
+        <ItemBox
+          theme={theme}
+          label="Skills"
+          isLastBox={true}
+          items={DATA.skills.items}
+          setActiveItem={setActiveItem}
+          activeItemLabel={activeItem?.label}
+          additionalOnClick={() => setMenuOpened(false)}
+        />
+      </div>
     </div>
   );
 };

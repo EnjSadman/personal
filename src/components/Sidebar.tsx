@@ -42,7 +42,7 @@ export const Sidebar = ({ activeItem, setActiveItem, data }: SidebarProps) => {
   }
 
   return (
-    <div className="max-w-80 max-h-screen hidden lg:flex lg:flex-col lg:gap-4">
+    <div className="max-w-80 h-full hidden lg:grid lg:grid-cols-1 lg:grid-rows-[auto_auto_1fr] lg:gap-4 overflow-hidden lg:pb-2">
       <ItemBox
         theme={theme}
         items={data.introduction.items}
